@@ -1,0 +1,352 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #ff6b9d;
+  --secondary-color: #a8d8ff;
+  --accent-color: #ffd93d;
+  --dark-bg: #0a0e27;
+  --light-bg: #1a1f3a;
+  --glow-color: rgba(255, 107, 157, 0.6);
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--dark-bg);
+  color: #fff;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--dark-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Music Control - Responsive */
+.music-control {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.music-btn {
+  width: 55px;
+  height: 55px;
+  border: 2.5px solid var(--primary-color);
+  background: rgba(26, 31, 58, 0.85);
+  border-radius: 50%;
+  color: var(--primary-color);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  transition: var(--transition);
+  box-shadow: 0 0 25px rgba(255, 107, 157, 0.4),
+    inset 0 0 15px rgba(255, 107, 157, 0.1);
+  backdrop-filter: blur(10px);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+.music-btn:hover {
+  background: rgba(26, 31, 58, 0.95);
+  box-shadow: 0 0 40px var(--glow-color), inset 0 0 15px rgba(255, 107, 157, 0.2);
+  transform: scale(1.1);
+}
+
+.music-btn:active {
+  transform: scale(0.95);
+}
+
+.music-btn.paused {
+  opacity: 0.6;
+}
+
+.music-btn.paused:hover {
+  opacity: 0.85;
+}
+
+/* Scene Base */
+.scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  animation: fadeInScene 0.6s ease-out;
+  z-index: 10;
+  padding: 20px;
+}
+
+@keyframes fadeInScene {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Buttons - Enhanced */
+.btn-glow {
+  padding: 16px 45px;
+  font-size: 18px;
+  font-weight: 700;
+  border: 2.5px solid var(--primary-color);
+  background: rgba(255, 107, 157, 0.15);
+  color: var(--primary-color);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 0 25px var(--glow-color), inset 0 0 20px rgba(255, 107, 157, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3));
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-glow:hover {
+  background: rgba(255, 107, 157, 0.3);
+  box-shadow: 0 0 50px var(--glow-color);
+  transform: translateY(-3px);
+}
+
+.btn-glow:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-glow:active {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  padding: 14px 35px;
+  font-size: 16px;
+  font-weight: 700;
+  border: 2.5px solid var(--primary-color);
+  background: linear-gradient(135deg, #ff6b9d, #ff1493);
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ff4d8f, #ff0080);
+  box-shadow: 0 0 35px rgba(255, 107, 157, 0.9);
+  transform: translateY(-2px);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+}
+
+/* Animations */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px var(--glow-color);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--glow-color);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(2px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .music-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+  }
+
+  .btn-glow {
+    padding: 14px 35px;
+    font-size: 16px;
+  }
+
+  .scene {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .music-control {
+    top: 15px;
+    right: 15px;
+  }
+
+  .music-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    border-width: 2px;
+  }
+
+  .btn-glow {
+    padding: 12px 28px;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+
+  .btn-primary {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+
+  .scene {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .music-control {
+    top: 12px;
+    right: 12px;
+  }
+
+  .music-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    border-width: 1.5px;
+  }
+
+  .btn-glow {
+    padding: 10px 24px;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .btn-primary {
+    padding: 10px 24px;
+    font-size: 12px;
+  }
+
+  .scene {
+    padding: 8px;
+  }
+}
+
+/* Touch feedback */
+@media (hover: none) and (pointer: coarse) {
+  .btn-glow,
+  .btn-primary {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+

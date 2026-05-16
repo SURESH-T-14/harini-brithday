@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday - I Made Something Special For You 🫶</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ==================== LOADING SCREEN ==================== -->
+    <section class="scene loading-scene active" id="loadingScene">
+        <div class="loading-container">
+            <div class="loading-text">Loading your surprise...</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </section>
+
+    <!-- ==================== OPENING SCREEN ==================== -->
+    <section class="scene opening-scene hidden" id="openingScene">
+        <div class="opening-container">
+            <div class="characters-container">
+                <img src="assets/images/hug.gif" alt="Birthday characters" class="opening-gif">
+            </div>
+            
+            <div class="opening-message">
+                <p class="message-text">I made something</p>
+                <p class="message-text highlight">special for u</p>
+                <p class="message-text">do u wanna see it?</p>
+            </div>
+            
+            <div class="button-container">
+                <button class="btn-yes" id="yesBtn">YES</button>
+                <button class="btn-no" id="noBtn">NO</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CAKE SCENE ==================== -->
+    <section class="scene cake-scene hidden" id="cakeScene">
+        <div class="cake-container">
+            <div class="cake">
+                <div class="candles">
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+                </div>
+                <div class="cake-body"></div>
+            </div>
+            <p class="cake-text">Make a wish! 🎂</p>
+            <button class="btn-primary" id="cakeNextBtn">Continue →</button>
+        </div>
+    </section>
+
+    <!-- ==================== LETTER SCENE ==================== -->
+    <section class="scene letter-scene hidden" id="letterScene">
+        <div class="letter-container">
+            <div class="letter-content">
+                <h2 class="letter-title">💌 A Letter Just for You</h2>
+                <div class="letter-text" id="letterText">
+                    <p class="letter-line">hiii paaki naa dhaa unoda waste fellowww🤍 happiest birthday and idhu nama 1st year friendship anniversary 😂</p>
+                    
+                    <p class="letter-line">last year iniku dha unuku happy birthday harini nu message pota apdi dhaan inda waste fellow un life laa vandhan and epaium solluvnga life laaa yelam best things hum last laa dhaa varum nu na apdi ena kadavul ku puniyam panano nee yenakaga vandha apdiyee pesi pesi koncha naalaiye nala close ahh aaitum aprm andha sympo dhan namala romba close ah aakuchu laaaah best memories rii adhulam un kudavey irundha andha 1 month fulaa is the most best phase in my life and color full days ena aariyamaey naa happy ahh irundha days adhuku aprm nama close ahh dhaa irundhum naduvula koncha naal ena avoid pana adhuku oru reason hum sona adhuku aprathula irundhu dhana nama neriya fights poda aaramichom but every fight distance ehh polaa inum dhaa close ahh annom laaah</p>
+                    
+                    <p class="letter-line">class mate -> friends -> best friends -> close freinds -> ipo na un family laa oruthar ahh irukaaan evlo close avaom nu nenachadhey ilaa enaku theirum naa indpendent ah irukanum depend ah iruka kuddhunu anaa yeno therilaa naa un keta fulla depend aaitan adduct aaitan neee yen best freind matum ilaa yen amma ku aaadthu oru person ah una vechirukan epaium ena vitu poga matanu solliruka so na una nambura vitu poidadha nee happy ah irundha apo apo enaku msg panaely naa happy ahh irupan riii</p>
+                    
+                    <p class="letter-line">adhu podhum una next meet panra varaa kanidpa una daily miss pauva un pics eduthu paapan un voice kepan romba mosama miss panuvaan ana un dsitrub pana mataan kandpaa adhukuaga avanuku nama niyabgam ilaa nu irukadhaa un life laa 24hrs una pathi yosikura 5 jeevan laa nanum onu ah irupan adhu unukeu therium kudaa</p>
+                    
+                    <p class="letter-line letter-closing">always lovee you soooooo much 🫂🤍 and happy born day by your one and only waste fellow</p>
+                </div>
+                <button class="btn-primary" id="letterNextBtn">Continue →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== VIDEO POPUP ==================== -->
+    <div class="video-popup-overlay hidden" id="videoPopupOverlay">
+        <div class="video-popup">
+            <div class="popup-content">
+                <p class="popup-message">rii indha video 10min iruku 😂 kandipa ne somberi thanam paaduva onu download pani aprm paaru ilaa oru 10min time eduthu paaru</p>
+            </div>
+            <button class="btn-primary popup-btn" id="popupStartBtn">Got It! 🎬 Start Video</button>
+        </div>
+    </div>
+
+    <!-- ==================== VIDEO SCENE ==================== -->
+    <section class="scene video-scene hidden" id="videoScene">
+        <div class="video-container">
+            <div class="video-placeholder">
+                <h2>🎬 A Special Video for You</h2>
+                <p>Something special I prepared 💕</p>
+                <div class="video-wrapper">
+                    <iframe
+                        id="videoElement"
+                        class="memory-video drive-video"
+                        src="https://drive.google.com/file/d/13RvIErxrkGrePpxxtZd53Jqlwq_zjD99/preview"
+                        title="Harini birthday video"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-menu">
+                        <button class="video-menu-btn" id="videoDownloadBtn" title="Download">⬇️</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="video-controls">
+                <button class="btn-primary" id="videoNextBtn">Next →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FINAL SCENE ==================== -->
+    <section class="scene final-scene hidden" id="finalScene">
+        <div class="final-container">
+            <h1>🎉 Happy Birthday! 🎉</h1>
+            <p class="final-message">Thank you for being such an amazing person!</p>
+            <h2 class="friendship-message">Happy Birthday Ri and Happy 1 Year Friendship Anniversary by Your Waste Fellow 💕</h2>
+            <div class="confetti"></div>
+            <button class="btn-primary restart-btn" id="restartBtn">🔄 Start Over</button>
+        </div>
+    </section>
+
+    <!-- NO Response Screen -->
+    <section class="scene no-response hidden" id="noResponse">
+        <div class="no-container">
+            <div class="sad-characters">
+                <img src="assets/images/no-button.gif" alt="Sad" class="no-response-gif">
+            </div>
+            <p class="no-message">Okay... but you're missing out! 😭</p>
+            <button class="btn-retry" id="retryBtn">Change your mind?</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

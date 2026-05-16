@@ -1,0 +1,172 @@
+.balloon {
+  position: absolute;
+  width: 65px;
+  height: 90px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.balloon:hover {
+  transform: scale(1.15) translateY(-5px);
+}
+
+.balloon-body {
+  width: 100%;
+  height: 75%;
+  background: radial-gradient(ellipse 35% 40% at 35% 35%, rgba(255, 100, 100, 0.8), #ff3333 50%, #cc0000 100%);
+  border-radius: 50% 50% 52% 48% / 60% 60% 40% 40%;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 
+    inset -8px -12px 20px rgba(0, 0, 0, 0.4),
+    inset 4px 4px 8px rgba(255, 100, 100, 0.6),
+    0 0 30px rgba(255, 51, 51, 0.9),
+    0 0 60px rgba(255, 51, 51, 0.5);
+  animation: balloonFloat 3.5s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+@keyframes balloonFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotateZ(-2deg);
+  }
+  50% {
+    transform: translateY(-18px) rotateZ(2deg);
+  }
+}
+
+.balloon:hover .balloon-body {
+  box-shadow: 
+    inset -8px -12px 20px rgba(0, 0, 0, 0.3),
+    inset 4px 4px 12px rgba(255, 150, 150, 0.8),
+    0 0 50px rgba(255, 51, 51, 1),
+    0 0 90px rgba(255, 51, 51, 0.7);
+}
+
+.balloon-shine {
+  position: absolute;
+  width: 30px;
+  height: 35px;
+  background: radial-gradient(ellipse 40% 60% at 30% 25%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3) 40%, transparent 70%);
+  border-radius: 50%;
+  top: 6px;
+  left: 8px;
+  pointer-events: none;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  animation: shineGlow 2s ease-in-out infinite;
+}
+
+@keyframes shineGlow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.balloon-string {
+  width: 2.5px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(200, 200, 200, 0.6), rgba(200, 200, 200, 0.2));
+  margin-top: 0;
+  flex: 1;
+  min-height: 25px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.balloon.burst .balloon-body {
+  animation: balloonBurst 0.5s ease-out forwards;
+}
+
+.balloon.burst .balloon-string {
+  animation: stringFall 0.5s ease-in forwards;
+}
+
+@keyframes balloonBurst {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(0) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes stringFall {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(120px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .balloon {
+    width: 55px;
+    height: 75px;
+  }
+
+  .balloon-body {
+    height: 68px;
+  }
+}
+
+@media (max-width: 768px) {
+  .balloon {
+    width: 50px;
+    height: 65px;
+  }
+
+  .balloon-body {
+    height: 60px;
+    box-shadow: inset -4px -8px 12px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba(255, 51, 51, 0.6);
+  }
+
+  .balloon-shine {
+    width: 20px;
+    height: 20px;
+  }
+
+  .balloon-string {
+    height: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .balloon {
+    width: 45px;
+    height: 60px;
+  }
+
+  .balloon-body {
+    height: 50px;
+    box-shadow: inset -3px -6px 10px rgba(0, 0, 0, 0.3),
+      0 0 15px rgba(255, 51, 51, 0.5);
+  }
+
+  .balloon-shine {
+    width: 16px;
+    height: 18px;
+    top: 4px;
+    left: 5px;
+  }
+
+  .balloon-string {
+    height: 20px;
+    width: 2px;
+  }
+}

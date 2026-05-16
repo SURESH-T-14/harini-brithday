@@ -1,0 +1,142 @@
+.opening-scene {
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b4e 100%);
+  flex-direction: column;
+  position: relative;
+}
+
+.stars-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.opening-content {
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.opening-content h1 {
+  font-size: 3.2rem;
+  margin-bottom: 0;
+  animation: titleBounce 1s ease-out;
+  text-shadow: 0 0 30px rgba(255, 107, 157, 0.6),
+    0 0 60px rgba(168, 216, 255, 0.2);
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+@keyframes titleBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.start-btn {
+  animation: buttonPulse 2s ease-in-out infinite;
+  position: relative;
+  min-width: 200px;
+}
+
+@keyframes buttonPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 25px var(--glow-color), inset 0 0 20px rgba(255, 107, 157, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 50px var(--glow-color), inset 0 0 30px rgba(255, 107, 157, 0.15);
+  }
+}
+
+.start-btn:hover {
+  animation: none;
+  box-shadow: 0 0 60px var(--glow-color);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive for tablets */
+@media (max-width: 1024px) {
+  .opening-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .opening-content {
+    gap: 30px;
+  }
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .opening-content h1 {
+    font-size: 2rem;
+  }
+
+  .opening-content {
+    gap: 25px;
+    padding: 20px;
+  }
+
+  .start-btn {
+    min-width: 160px;
+    padding: 12px 28px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .opening-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .opening-content {
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .start-btn {
+    min-width: 140px;
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+}
