@@ -59,6 +59,47 @@ function showScene(scene) {
 
 // ==================== CAKE SCENE ====================
 
+function initiateCakeCountdown() {
+    const countdownDisplay = document.getElementById('countdownDisplay');
+    const cakeText = document.getElementById('cakeText');
+    const cakeNextBtn = document.getElementById('cakeNextBtn');
+    const flames = document.querySelectorAll('.flame');
+    
+    let count = 3;
+    
+    // Show countdown
+    const countdownInterval = setInterval(() => {
+        countdownDisplay.textContent = count;
+        countdownDisplay.style.animation = 'none';
+        setTimeout(() => {
+            countdownDisplay.style.animation = 'countdownPulse 0.6s ease-in-out';
+        }, 10);
+        
+        if (count === 0) {
+            clearInterval(countdownInterval);
+            
+            // Extinguish flames
+            flames.forEach((flame, index) => {
+                setTimeout(() => {
+                    flame.style.animation = 'flameExtinguish 0.8s ease-out forwards';
+                    flame.classList.add('extinguished');
+                }, index * 150);
+            });
+            
+            // Hide countdown and show make a wish text
+            setTimeout(() => {
+                countdownDisplay.style.display = 'none';
+                cakeText.style.transition = 'opacity 0.8s ease';
+                cakeText.style.opacity = '1';
+                cakeNextBtn.style.transition = 'opacity 0.8s ease';
+                cakeNextBtn.style.opacity = '1';
+            }, 700);
+        }
+        
+        count--;
+    }, 1000);
+}
+
 cakeNextBtn.addEventListener('click', () => {
     hideScene(cakeScene);
     setTimeout(() => {
@@ -162,6 +203,10 @@ yesBtn.addEventListener('click', () => {
     hideScene(openingScene);
     setTimeout(() => {
         showScene(cakeScene);
+        // Start cake countdown after showing scene
+        setTimeout(() => {
+            initiateCakeCountdown();
+        }, 300);
     }, 300);
 });
 

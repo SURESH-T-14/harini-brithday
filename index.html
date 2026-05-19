@@ -38,22 +38,29 @@
     <!-- ==================== CAKE SCENE ==================== -->
     <section class="scene cake-scene hidden" id="cakeScene">
         <div class="cake-container">
+            <div class="countdown-display" id="countdownDisplay"></div>
             <div class="cake">
                 <div class="candles">
                     <div class="candle">
-                        <div class="flame"></div>
+                        <div class="flame" id="flame1"></div>
                     </div>
                     <div class="candle">
-                        <div class="flame"></div>
+                        <div class="flame" id="flame2"></div>
                     </div>
                     <div class="candle">
-                        <div class="flame"></div>
+                        <div class="flame" id="flame3"></div>
                     </div>
                 </div>
-                <div class="cake-body"></div>
+                <!-- Cake layers -->
+                <div class="cake-top"></div>
+                <div class="cake-middle"></div>
+                <div class="cake-bottom"></div>
+                <!-- Frosting between layers -->
+                <div class="frosting frosting-top"></div>
+                <div class="frosting frosting-middle"></div>
             </div>
-            <p class="cake-text">Make a wish! 🎂</p>
-            <button class="btn-primary" id="cakeNextBtn">Continue →</button>
+            <p class="cake-text" id="cakeText" style="opacity: 0;">Make a wish! 🎂</p>
+            <button class="btn-primary" id="cakeNextBtn" style="opacity: 0;">Continue →</button>
         </div>
     </section>
 
