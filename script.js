@@ -59,6 +59,55 @@ function showScene(scene) {
 
 // ==================== CAKE SCENE ====================
 
+function createPoppers() {
+    const container = document.getElementById('poppersContainer');
+    const colors = ['#FF1493', '#FFB6D9', '#FFC9E3', '#FF69B4', '#FFD700', '#FFA500'];
+    
+    // Create firework burst (30 particles)
+    for (let i = 0; i < 30; i++) {
+        const popper = document.createElement('div');
+        popper.className = 'popper firework';
+        popper.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Random position around center
+        const angle = (i / 30) * Math.PI * 2;
+        const velocity = 100 + Math.random() * 150;
+        const tx = Math.cos(angle) * velocity;
+        const ty = Math.sin(angle) * velocity;
+        
+        popper.style.setProperty('--tx', `${tx}px`);
+        popper.style.setProperty('--ty', `${ty}px`);
+        
+        popper.style.left = '50%';
+        popper.style.top = '40%';
+        popper.style.transform = 'translate(-50%, -50%)';
+        
+        container.appendChild(popper);
+        
+        // Remove after animation
+        setTimeout(() => popper.remove(), 1500);
+    }
+    
+    // Create falling confetti (50 particles)
+    for (let i = 0; i < 50; i++) {
+        const popper = document.createElement('div');
+        popper.className = 'popper confetti';
+        popper.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        const startX = Math.random() * 100;
+        const randomOffset = (Math.random() - 0.5) * 300;
+        
+        popper.style.setProperty('--tx', `${randomOffset}px`);
+        popper.style.left = `${startX}%`;
+        popper.style.top = '-20px';
+        
+        container.appendChild(popper);
+        
+        // Remove after animation
+        setTimeout(() => popper.remove(), 2000);
+    }
+}
+
 function initiateCakeCountdown() {
     const countdownDisplay = document.getElementById('countdownDisplay');
     const cakeText = document.getElementById('cakeText');
@@ -78,11 +127,16 @@ function initiateCakeCountdown() {
         if (count === 0) {
             clearInterval(countdownInterval);
             
-            // Extinguish flames
+            // Extinguish flames and trigger poppers
             flames.forEach((flame, index) => {
                 setTimeout(() => {
                     flame.style.animation = 'flameExtinguish 0.8s ease-out forwards';
                     flame.classList.add('extinguished');
+                    
+                    // Trigger poppers when first flame extinguishes
+                    if (index === 0) {
+                        createPoppers();
+                    }
                 }, index * 150);
             });
             
