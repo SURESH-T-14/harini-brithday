@@ -464,43 +464,33 @@ html, body {
     left: 0;
     pointer-events: none;
     z-index: 5;
+    overflow: hidden;
 }
 
 .popper {
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     pointer-events: none;
+    box-shadow: 0 0 8px rgba(255, 107, 157, 0.6);
 }
 
-.popper.confetti {
-    animation: popperFall 2s ease-in forwards;
+.popper.shower {
+    animation: popperShower var(--duration, 2s) ease-in forwards;
 }
 
-.popper.firework {
-    animation: fireworkBurst 1.5s ease-out forwards;
-}
-
-@keyframes popperFall {
+@keyframes popperShower {
     0% {
         opacity: 1;
-        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+        transform: translateY(0) translateX(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
     }
     100% {
         opacity: 0;
-        transform: translateY(400px) translateX(var(--tx)) rotate(360deg) scale(0);
-    }
-}
-
-@keyframes fireworkBurst {
-    0% {
-        opacity: 1;
-        transform: translate(0, 0) scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(var(--tx), var(--ty)) scale(0);
+        transform: translateY(800px) translateX(var(--drift, 0px)) rotate(360deg);
     }
 }
 

@@ -63,48 +63,31 @@ function createPoppers() {
     const container = document.getElementById('poppersContainer');
     const colors = ['#FF1493', '#FFB6D9', '#FFC9E3', '#FF69B4', '#FFD700', '#FFA500'];
     
-    // Create firework burst (30 particles)
-    for (let i = 0; i < 30; i++) {
+    // Create popper shower effect (80 particles falling from top)
+    for (let i = 0; i < 80; i++) {
         const popper = document.createElement('div');
-        popper.className = 'popper firework';
+        popper.className = 'popper shower';
         popper.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         
-        // Random position around center
-        const angle = (i / 30) * Math.PI * 2;
-        const velocity = 100 + Math.random() * 150;
-        const tx = Math.cos(angle) * velocity;
-        const ty = Math.sin(angle) * velocity;
-        
-        popper.style.setProperty('--tx', `${tx}px`);
-        popper.style.setProperty('--ty', `${ty}px`);
-        
-        popper.style.left = '50%';
-        popper.style.top = '40%';
-        popper.style.transform = 'translate(-50%, -50%)';
-        
-        container.appendChild(popper);
-        
-        // Remove after animation
-        setTimeout(() => popper.remove(), 1500);
-    }
-    
-    // Create falling confetti (50 particles)
-    for (let i = 0; i < 50; i++) {
-        const popper = document.createElement('div');
-        popper.className = 'popper confetti';
-        popper.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        
+        // Random position across width
         const startX = Math.random() * 100;
-        const randomOffset = (Math.random() - 0.5) * 300;
         
-        popper.style.setProperty('--tx', `${randomOffset}px`);
+        // Random horizontal drift
+        const randomDrift = (Math.random() - 0.5) * 400;
+        
+        // Random fall duration (1.5 - 2.5 seconds)
+        const duration = 1.5 + Math.random() * 1;
+        
+        popper.style.setProperty('--drift', `${randomDrift}px`);
+        popper.style.setProperty('--duration', `${duration}s`);
+        
         popper.style.left = `${startX}%`;
-        popper.style.top = '-20px';
+        popper.style.top = '-30px';
         
         container.appendChild(popper);
         
         // Remove after animation
-        setTimeout(() => popper.remove(), 2000);
+        setTimeout(() => popper.remove(), duration * 1000 + 100);
     }
 }
 
