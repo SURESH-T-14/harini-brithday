@@ -579,72 +579,6 @@ html, body {
     position: relative;
 }
 
-/* Memory photos on left side */
-.letter-photos-left {
-    position: fixed;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 2;
-    opacity: 0;
-    animation: slideInLeft 0.8s ease-out 0.3s forwards;
-}
-
-/* Memory photos on right side */
-.letter-photos-right {
-    position: fixed;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 2;
-    opacity: 0;
-    animation: slideInRight 0.8s ease-out 0.3s forwards;
-}
-
-.letter-photo {
-    width: 70px;
-    height: 70px;
-    border-radius: 10px;
-    object-fit: cover;
-    border: 3px solid #FFB6D9;
-    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-}
-
-.letter-photo:hover {
-    transform: scale(1.1) rotate(2deg);
-    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
-}
-
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateY(-50%) translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateY(-50%) translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0);
-    }
-}
-
 /* Ensure scrollbar starts at top */
 .letter-container::-webkit-scrollbar {
     width: 8px;
@@ -1147,12 +1081,6 @@ html, body {
     
     .letter-line {
         font-size: 14px;
-    }
-
-    /* Hide memory photos on tablet */
-    .letter-photos-left,
-    .letter-photos-right {
-        display: none;
     }
     
     .final-container h1 {
