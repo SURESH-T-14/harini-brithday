@@ -153,9 +153,13 @@ cakeNextBtn.addEventListener('click', () => {
 // ==================== LETTER SCENE ====================
 
 function initiateTypewriterEffect() {
+    const letterContainer = document.querySelector('.letter-container');
     const letterLines = document.querySelectorAll('.letter-line');
     const typeSpeed = 30; // milliseconds per character
     const pauseBetweenLines = 200; // milliseconds between lines
+    
+    // Ensure scroll starts at top
+    letterContainer.scrollTop = 0;
     
     let totalDelay = 0;
     
@@ -172,6 +176,11 @@ function initiateTypewriterEffect() {
                 if (charIndex < originalText.length) {
                     line.textContent += originalText.charAt(charIndex);
                     charIndex++;
+                    
+                    // Keep scrolling to show first line at top
+                    if (index === 0) {
+                        letterContainer.scrollTop = 0;
+                    }
                 } else {
                     clearInterval(typeInterval);
                     line.classList.remove('typewriter');
