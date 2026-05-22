@@ -168,6 +168,10 @@ function initiateTypewriterEffect() {
         line.textContent = '';
         line.classList.add('typewriter');
         
+        // Remove any border or animation styles
+        line.style.border = 'none';
+        line.style.animation = 'none';
+        
         // Delay each line
         setTimeout(() => {
             let charIndex = 0;
@@ -184,6 +188,8 @@ function initiateTypewriterEffect() {
                 } else {
                     clearInterval(typeInterval);
                     line.classList.remove('typewriter');
+                    line.style.border = 'none';
+                    line.style.animation = 'none';
                 }
             }, typeSpeed);
         }, totalDelay);
