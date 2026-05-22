@@ -143,10 +143,45 @@ cakeNextBtn.addEventListener('click', () => {
         showScene(letterScene);
         // Ensure letter scrolls to top
         ensureLetterScrollTop();
+        // Start typewriter effect
+        setTimeout(() => {
+            initiateTypewriterEffect();
+        }, 400);
     }, 320);
 });
 
 // ==================== LETTER SCENE ====================
+
+function initiateTypewriterEffect() {
+    const letterLines = document.querySelectorAll('.letter-line');
+    const typeSpeed = 30; // milliseconds per character
+    const pauseBetweenLines = 200; // milliseconds between lines
+    
+    let totalDelay = 0;
+    
+    letterLines.forEach((line, index) => {
+        const originalText = line.textContent;
+        line.textContent = '';
+        line.classList.add('typewriter');
+        
+        // Delay each line
+        setTimeout(() => {
+            let charIndex = 0;
+            
+            const typeInterval = setInterval(() => {
+                if (charIndex < originalText.length) {
+                    line.textContent += originalText.charAt(charIndex);
+                    charIndex++;
+                } else {
+                    clearInterval(typeInterval);
+                    line.classList.remove('typewriter');
+                }
+            }, typeSpeed);
+        }, totalDelay);
+        
+        totalDelay += originalText.length * typeSpeed + pauseBetweenLines;
+    });
+}
 
 const letterContainer = document.querySelector('.letter-container');
 
